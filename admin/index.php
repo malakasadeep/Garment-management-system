@@ -88,7 +88,7 @@
 								<ion-icon name="albums-outline"></ion-icon>
 
 							</span>
-							<span class="title">Recent Recipes</span>
+							<span class="title">Employee Management</span>
 						</a>
 					</li>
 
@@ -97,7 +97,7 @@
 							<span class="icon">
 								<ion-icon name="card-outline"></ion-icon>
 							</span>
-							<span class="title">Donations</span>
+							<span class="title">Inventory Levels</span>
 						</a>
 					</li>
 
@@ -110,14 +110,7 @@
 						</a>
 					</li>
 
-					<li>
-						<a href="#mngAdmin">
-							<span class="icon">
-							<ion-icon name="person-circle-outline"></ion-icon>
-							</span>
-							<span class="title">Manage Admin</span>
-						</a>
-					</li>
+					
 
 					<li>
 						<a href="settings.php?updateaid=<?= $mysqli['A_ID']?>">
