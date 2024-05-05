@@ -6,7 +6,7 @@ include_once("dbh.inc.php");
 $user = $_SESSION['name'];
 $uid = $_SESSION['uid'];
 
-$sql = "SELECT * FROM recipe WHERE uid = {$uid}";
+$sql = "SELECT * FROM user WHERE uid = {$uid}";
 
 $result = mysqli_query($conn, $sql);
     
@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $sql);
           <img src="/logo.jpg" alt="">
           <span class="nav-item"><?php echo $user;?></span>
         </a></li>
-        <li><a href="/Online_Recipe_Management_System" class="nav-link">
+        <li><a href="/Garment-management-system/user/userprofile.php" class="nav-link">
           <i class="fas fa-home"></i>
           <span class="nav-item">Home</span>
         </a></li>
@@ -86,20 +86,7 @@ $result = mysqli_query($conn, $sql);
         <div class="course-box">
           <div class="course">
 
-<?php
-if(mysqli_num_rows($result) > 0) {
-  while($row = mysqli_fetch_assoc($result)) {
-        echo  '<div class="box">';
-        echo      '<h3>'. $row['name']. '</h3>';
-        echo      '<p>'. $row['description']. '</p>';
-        echo      '<button>'.'Edit'.'</button>';
-        echo      '<button>'.'Delete'.'</button>';
-        echo      '<img src="/Online_Recipe_Management_System/recipe/images/'.$row['image']. '" style="height:20px width:20px">';
-        echo    '</div>';
 
-  }
-};
-?>
             </div>
           </div>
         </div>

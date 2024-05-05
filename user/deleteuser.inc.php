@@ -1,0 +1,43 @@
+<?php
+session_start();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include_once("dbh.inc.php");
+
+if (true) {
+    
+
+    $pid = $_SESSION['uid'];
+
+    // SQL query to delete the inventory record
+    $sql = "DELETE FROM user WHERE uid = $pid";
+
+    // Execute the query
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+
+        session_destroy();
+        // Use SweetAlert for success message
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
+        echo '<script>';
+        echo 'document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: "Success!",
+                text: "User Profile Deleted Successfully!",
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Garment-management-system";
+                }
+            });
+        });';
+        echo '</script>';
+    } else {
+        // Error handling
+        die(mysqli_error($conn));
+    }
+}
+?>
