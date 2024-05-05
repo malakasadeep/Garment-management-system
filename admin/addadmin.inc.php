@@ -7,11 +7,11 @@ include_once("dbh.inc.php");
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $email = $_POST['email'];
-    $pass = $_POST['password'];
+    $phone = $_POST['phone'];
+    $dept = $_POST['department'];
  
 
-    $sql = "INSERT INTO user(uid, name, email, password, type) VALUES (0, '$name', '$email', '$pass', 'admin')";
+    $sql = "INSERT INTO employee(eid, name, date, phone, department) VALUES (0, '$name', 0, '$phone', '$dept')";
 
     $result = mysqli_query($conn, $sql);
 

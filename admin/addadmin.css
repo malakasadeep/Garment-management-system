@@ -93,3 +93,10 @@ form .text h3 a{
 form .text h3 a:hover{
   text-decoration: underline;
 }
+button {
+  background-color: rgb(108, 247, 168);
+  border-radius: 10px;
+  border-style: none;
+  padding: 10px;
+  width: 100px;
+}
