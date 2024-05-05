@@ -27,7 +27,7 @@
                         echo '<li><a class="log" href="/Online_Recipe_Management_System/user">'. $_SESSION['name']. '</a></li>';
                     }
                     else {
-                        echo '<li><a class="log" href="/Online_Recipe_Management_System/login">Sign in</a></li>';
+                        echo '<li><a class="log" href="/Garment-management-system/login">Sign in</a></li>';
                     }
                 ?>
                 

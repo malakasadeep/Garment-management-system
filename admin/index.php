@@ -6,8 +6,9 @@
     include_once("dbh.inc.php");
 
     $sql = array(
-            "SELECT * FROM recipe", 
-            "SELECT COUNT(rid) FROM recipe",
+            "SELECT * FROM employee", 
+			"SELECT * FROM inventory",
+            "SELECT COUNT(eid) FROM employee",
             "SELECT * FROM user WHERE type = 'user'",
             "SELECT * FROM user WHERE type = 'admin'"
         );
@@ -24,6 +25,9 @@
         }
         if ($i == 3) {
             $result4 = mysqli_query($conn, $sql[$i]);
+        }
+		if ($i == 4) {
+            $result5 = mysqli_query($conn, $sql[$i]);
         }
     }    
 
@@ -143,7 +147,7 @@
 					<div class="card">
 						<div>
 							<div class="numbers"><?php echo $rowcount; ?></div>
-							<div class="cardName">Total Recipes</div>
+							<div class="cardName">Total Employees</div>
 						</div>
 
 						<div class="iconBx">
@@ -187,20 +191,23 @@
 					</div>
 				</div>
 
-				<!-- ================ Recent Recipes ================= -->
+				<!-- ================ Employee Management ================= -->
 				<div class="details">
 					<div id="recentRes">
                         <div class="recentOrders">
                             <div class="cardHeader">
-                                <h2>Recent Recipes</h2>
+                                <h2>Employees Management</h2>
+								<a href="addadmin.php" class="btn">Add New Employee</a>
                             </div>
 
                             <table>
                                 <thead>
                                     <tr>
-                                        <td>Recipe ID</td>
-                                        <td>Recipe Name</td>
-                                        <td>Date</td>
+                                        <td>Employee ID</td>
+                                        <td>Employee Name</td>
+                                        <td>Start Date</td>
+										<td>Phone</td>
+										<td>Department</td>
                                         <td>Status</td>
                                     </tr>
                                 </thead>
@@ -209,10 +216,57 @@
                                         if(mysqli_num_rows($result) > 0) {
                                             while($row = mysqli_fetch_assoc($result)) { 
                                                 echo      '<tr>';
-                                                echo      '<td>'. $row['rid']. '</td>';
-                                                echo      '<td><a href="/Online_Recipe_Management_System/recipe/view.php?id=' . $row['rid'] . '">' . $row['name'] . '</a></td>';
+                                                echo      '<td>'. $row['eid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
                                                 echo      '<td>'. $row['date']. '</td>';
-                                                echo      '<td>'. '<span class="status return">' .'Return' .'</span>' .'</td>';
+												echo      '<td>'. $row['phone']. '</td>';
+												echo      '<td>'. $row['department']. '</td>';
+                                                echo      '<td>'. '<span class="status delivered">' .'Active' .'</span>' .'</td>';
+                                                echo      '</tr>';
+                                            }
+                                        };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+					<!-- ================ Inventory Levels ================= -->
+				<div class="details">
+					<div id="recentRes">
+                        <div class="recentOrders">
+                            <div class="cardHeader">
+                                <h2>Inventory Levels</h2>
+								<a href="addinventory.php" class="btn">Add New Inventory</a>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Item ID</td>
+                                        <td>Item Name</td>
+                                        <td>Category</td>
+										<td>Manufacture</td>
+										<td>Location</td>
+                                        <td>Manufa. Date</td>
+										<td>Max. Qty</td>
+										<td>Curr. Qty</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        if(mysqli_num_rows($result2) > 0) {
+                                            while($row = mysqli_fetch_assoc($result2)) { 
+                                                echo      '<tr>';
+                                                echo      '<td>'. $row['pid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
+                                                echo      '<td>'. $row['category']. '</td>';
+												echo      '<td>'. $row['manufactur']. '</td>';
+												echo      '<td>'. $row['location']. '</td>';
+												echo      '<td>'. $row['dop']. '</td>';
+												echo      '<td>'. $row['max']. '</td>';
+												echo      '<td>'. $row['qty']. '</td>';
+                                                echo      '<td>'. '<a href="updateinventory.php?id='.$row['pid'].'" class="btn">' .'Update' .'</a>' .'</td>';
                                                 echo      '</tr>';
                                             }
                                         };
@@ -242,8 +296,8 @@
 
                                 <tbody>
                                     <?php
-                                        if(mysqli_num_rows($result3) > 0) {
-                                            while($row = mysqli_fetch_assoc($result3)) { 
+                                        if(mysqli_num_rows($result4) > 0) {
+                                            while($row = mysqli_fetch_assoc($result4)) { 
                                                 echo      '<tr>';
                                                 echo      '<td>'. $row['uid']. '</td>';
                                                 echo      '<td>'. $row['name']. '</td>';
@@ -258,7 +312,7 @@
                     </div>
 				
 
-				<!--admins-->
+				<!--Employees-->
 			
 				<div id="mngAdmin">
 					<div class="recentOrders">
@@ -272,21 +326,23 @@
 								<tr>
 									<td>User ID</td>
 									<td>User Name</td>
-									<td>Email</td>
+									<td>Date</td>
+									<td>Phone</td>
+									<td>Department</td>
 								</tr>
 							</thead>
 							<tbody>
-                                <?php
-									if(mysqli_num_rows($result4) > 0) {
-										while($row = mysqli_fetch_assoc($result4)) { 
-											echo      '<tr>';
-											echo      '<td>'. $row['uid']. '</td>';
-                                            echo      '<td>'. $row['name']. '</td>';
-                                            echo      '<td>'. $row['email']. '</td>';
-											echo      '</tr>';
-										}
-									};
-                            	?>	
+							<?php
+                                        if(mysqli_num_rows($result5) > 0) {
+                                            while($row = mysqli_fetch_assoc($result5)) { 
+                                                echo      '<tr>';
+                                                echo      '<td>'. $row['uid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
+                                                echo      '<td>'. $row['email']. '</td>';
+                                                echo      '</tr>';
+                                            }
+                                        };
+                                    ?>	
 							</tbody>
 						</table>
 					</div>

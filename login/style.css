@@ -206,7 +206,3 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
-
-.hidden {
-    display: none;
-}

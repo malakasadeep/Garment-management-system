@@ -25,10 +25,10 @@ if (isset($_POST['submit'])) {
           $_SESSION['password'] = $user['password'];
           
           if($user['type'] == "user"){
-            header("Location: /Online_Recipe_Management_System/user"); 
+            header("Location: /Garment-management-system/user"); 
           }
           else {
-            header("Location: /Online_Recipe_Management_System/admin"); 
+            header("Location: /Garment-management-system/admin"); 
           }         
       }
         
