@@ -1,169 +1,143 @@
 <?php
-session_start();
+    session_start();
 ?>
 
 <?php
-include_once("dbh.inc.php");
+    include_once("dbh.inc.php");
 
-$sql = array(
-	"SELECT * FROM employee",
-	"SELECT * FROM inventory",
-	"SELECT COUNT(eid) FROM employee",
-	"SELECT * FROM user WHERE type = 'user'",
-	"SELECT * FROM user WHERE type = 'admin'",
-	"SELECT * FROM products",
-);
+    $sql = array(
+            "SELECT * FROM employee", 
+			"SELECT * FROM inventory",
+            "SELECT COUNT(eid) FROM employee",
+            "SELECT * FROM user WHERE type = 'user'",
+            "SELECT * FROM user WHERE type = 'admin'",
+			"SELECT * FROM products"
+        );
 
-for ($i = 0; $i < 6; $i++) {
-	if ($i == 0) {
-		$result = mysqli_query($conn, $sql[$i]);
-	}
-	if ($i == 1) {
-		$result2 = mysqli_query($conn, $sql[$i]);
-	}
-	if ($i == 2) {
-		$result3 = mysqli_query($conn, $sql[$i]);
-	}
-	if ($i == 3) {
-		$result4 = mysqli_query($conn, $sql[$i]);
-	}
-	if ($i == 4) {
-		$result5 = mysqli_query($conn, $sql[$i]);
-	}
-	if ($i == 5) {
-		$result6 = mysqli_query($conn, $sql[$i]);
-	}
-}
+    for ($i = 0; $i < 6; $i++) {
+        if ($i == 0) {
+            $result = mysqli_query($conn, $sql[$i]);
+        }
+        if ($i == 1) {
+            $result2 = mysqli_query($conn, $sql[$i]);
+        }
+        if ($i == 2) {
+            $result3 = mysqli_query($conn, $sql[$i]);
+        }
+        if ($i == 3) {
+            $result4 = mysqli_query($conn, $sql[$i]);
+        }
+		if ($i == 4) {
+            $result5 = mysqli_query($conn, $sql[$i]);
+        }
+		if ($i == 5) {
+            $result6 = mysqli_query($conn, $sql[$i]);
+        }
+    }    
 
-$rowcount = mysqli_num_rows($result);
+    $rowcount=mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Responsive Admin Dashboard</title>
+		<!-- ======= Styles ====== -->
+		<link rel="stylesheet" href="style.css" />
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Responsive Admin Dashboard</title>
-	<!-- ======= Styles ====== -->
-	<link rel="stylesheet" href="style.css" />
-</head>
+	<body>
+		<!-- =============== Navigation ================ -->
+		<div class="container">
+			<div class="navigation">
+				<ul>
+					<li>
+						<a href="#">
+							<span class="icon">
+								<img src="imgs/customer01.jpg" alt="" />
+							</span>
+							<span class="tit">;?></span>
+						</a>
+					</li>
 
-<body>
-	<!-- =============== Navigation ================ -->
-	<div class="container">
-		<div class="navigation">
-			<ul>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<!-- logo -->
-						</span>
-						<span class="tit"></span>
-					</a>
-				</li>
+					<li>
+						<a href="#">
+							<span class="icon">
+								<ion-icon name="home-outline"></ion-icon>
+							</span>
+							<span class="title">Dashboard</span>
+						</a>
+					</li>
 
-				<li>
-					<a href="#">
-						<span class="icon">
-							<ion-icon name="home-outline"></ion-icon>
-						</span>
-						<span class="title">Dashboard</span>
-					</a>
-				</li>
+					<li>
+						<a href="#recentpro">
+							<span class="icon">
+								<ion-icon name="albums-outline"></ion-icon>
 
-				<li>
-					<a href="#recentProducts">
-						<span class="icon">
-							<ion-icon name="albums-outline"></ion-icon>
+							</span>
+							<span class="title">Recent Products</span>
+						</a>
+					</li>
 
-						</span>
-						<span class="title">Recent Products</span>
-					</a>
-				</li>
+					<li>
+						<a href="#recentRes">
+							<span class="icon">
+								<ion-icon name="albums-outline"></ion-icon>
 
-				<li>
-					<a href="#recentRes">
-						<span class="icon">
-							<ion-icon name="albums-outline"></ion-icon>
+							</span>
+							<span class="title">Recent Recipes</span>
+						</a>
+					</li>
 
-						</span>
-						<span class="title">Recent Recipes</span>
-					</a>
-				</li>
+					<li>
+						<a href="#don">
+							<span class="icon">
+								<ion-icon name="card-outline"></ion-icon>
+							</span>
+							<span class="title">Donations</span>
+						</a>
+					</li>
 
-				<li>
-					<a href="#don">
-						<span class="icon">
-							<ion-icon name="card-outline"></ion-icon>
-						</span>
-						<span class="title">Donations</span>
-					</a>
-				</li>
-
-				<li>
-					<a href="#recentUsr">
-						<span class="icon">
+					<li>
+						<a href="#recentUsr">
+							<span class="icon">
 							<ion-icon name="people-outline"></ion-icon>
-						</span>
-						<span class="title">Recent Users</span>
-					</a>
-				</li>
+							</span>
+							<span class="title">Recent Users</span>
+						</a>
+					</li>
 
-				<li>
-					<a href="#mngAdmin">
-						<span class="icon">
+					<li>
+						<a href="#mngAdmin">
+							<span class="icon">
 							<ion-icon name="person-circle-outline"></ion-icon>
-						</span>
-						<span class="title">Manage Admin</span>
-					</a>
-				</li>
+							</span>
+							<span class="title">Manage Admin</span>
+						</a>
+					</li>
 
-				<li>
-					<a href="settings.php?updateaid=<?= $mysqli['A_ID'] ?>">
-						<span class="icon">
-							<ion-icon name="settings-outline"></ion-icon>
-						</span>
-						<span class="title">Settings</span>
-					</a>
-				</li>
+					<li>
+						<a href="settings.php?updateaid=<?= $mysqli['A_ID']?>">
+							<span class="icon"> 
+								<ion-icon name="settings-outline"></ion-icon>
+							</span>
+							<span class="title">Settings</span>
+						</a>
+					</li>
 
-				<li>
-					<a href="#">
-						<span class="icon">
-							<ion-icon name="log-out-outline"></ion-icon>
-						</span>
-						<span class="title">Sign Out</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-
-		<!-- ========================= Main ==================== -->
-		<div class="main">
-			<div class="topbar">
-				<div class="toggle">
-					<ion-icon name="menu-outline"></ion-icon>
-				</div>
-
-				<div class="se">
-
-
-				</div>
-
-				<div class="user">
-
-				</div>
+					<li>
+						<a href="#">
+							<span class="icon">
+								<ion-icon name="log-out-outline"></ion-icon>
+							</span>
+							<span class="title">Sign Out</span>
+						</a>
+					</li>
+				</ul>
 			</div>
-
-
-			<!-- ======================= Cards ================== -->
-			<div class="cardBox">
-				<div class="card">
-					<div>
-						<div class="numbers"><?php echo $rowcount; ?></div>
-						<div class="cardName">Total Employees</div>
 
 			<!-- ========================= Main ==================== -->
 			<div class="main">
@@ -172,48 +146,67 @@ $rowcount = mysqli_num_rows($result);
 						<ion-icon name="menu-outline"></ion-icon>
 					</div>
 
-					<div class="iconBx">
-						<ion-icon name="eye-outline"></ion-icon>
+					<div class="se">
+							
+				
+					</div>
+
+					<div class="user">
+						
 					</div>
 				</div>
 
-				<div class="card">
-					<div>
+				<!-- ======================= Cards ================== -->
+				<div class="cardBox">
+					<div class="card">
+						<div>
+							<div class="numbers"><?php echo $rowcount; ?></div>
+							<div class="cardName">Total Employees</div>
+						</div>
 
-						<div class="numbers"></div>
-						<div class="cardName">Registred Users</div>
+						<div class="iconBx">
+							<ion-icon name="eye-outline"></ion-icon>
+						</div>
 					</div>
 
-					<div class="iconBx">
-						<ion-icon name="people-outline"></ion-icon>
+					<div class="card">
+						<div>
+							
+							<div class="numbers"></div>
+							<div class="cardName">Registred Users</div>
+						</div>
+
+						<div class="iconBx">
+							<ion-icon name="people-outline"></ion-icon>
+						</div>
+					</div>
+
+					<div class="card">
+						<div>
+							
+							<div class="numbers"></div>
+							<div class="cardName">Recipes</div>
+						</div>
+
+						<div class="iconBx">
+							<ion-icon name="albums-outline"></ion-icon>
+						</div>
+					</div>
+
+					<div class="card">
+						<div>
+							<div class="numbers"><?php echo $rowcount; ?></div>
+							<div class="cardName">Donations</div>
+						</div>
+
+						<div class="iconBx">
+							<ion-icon name="cash-outline"></ion-icon>
+						</div>
 					</div>
 				</div>
 
-				<div class="card">
-					<div>
 
-						<div class="numbers"><?php echo $rowcount; ?></div>
-						<div class="cardName">Products</div>
-					</div>
-
-					<div class="iconBx">
-						<ion-icon name="albums-outline"></ion-icon>
-					</div>
-				</div>
-
-				<div class="card">
-					<div>
-						<div class="numbers"><?php echo $rowcount; ?></div>
-						<div class="cardName">Donations</div>
-					</div>
-
-					<div class="iconBx">
-						<ion-icon name="cash-outline"></ion-icon>
-					</div>
-				</div>
-			</div>
-
-			<!-- ================ Product Management ================= -->
+				<!-- ================ Product Management ================= -->
 			<div class="details">
 				<div id="recentProducts">
 					<div class="recentOrders">
@@ -257,21 +250,20 @@ $rowcount = mysqli_num_rows($result);
 				<!-- ================ Employee Management ================= -->
 				<div class="details">
 					<div id="recentRes">
-						<div class="recentOrders">
-							<div class="cardHeader">
-								<h2>Employees Management</h2>
+                        <div class="recentOrders">
+                            <div class="cardHeader">
+                                <h2>Employees Management</h2>
 								<a href="addadmin.php" class="btn">Add New Employee</a>
-							</div>
+                            </div>
 
-							<table>
-								<thead>
-									<tr>
-										<td>Employee ID</td>
-										<td>Employee Name</td>
-										<td>Start Date</td>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Employee ID</td>
+                                        <td>Employee Name</td>
+                                        <td>Start Date</td>
 										<td>Phone</td>
 										<td>Department</td>
-
                                         
                                     </tr>
                                 </thead>
@@ -297,14 +289,13 @@ $rowcount = mysqli_num_rows($result);
                     </div>
 
 					<!-- ================ Inventory Levels ================= -->
-					<div class="details">
-						<div id="recentRes">
-							<div class="recentOrders">
-								<div class="cardHeader">
-									<h2>Inventory Levels</h2>
-									<a href="addinventory.php" class="btn">Add New Inventory</a>
-								</div>
-
+				<div class="details">
+					<div id="recentRes">
+                        <div class="recentOrders">
+                            <div class="cardHeader">
+                                <h2>Inventory Levels</h2>
+								<a href="addinventory.php" class="btn">Add New Inventory</a>
+                            </div>
 
                             <table>
                                 <thead>
@@ -386,86 +377,39 @@ $rowcount = mysqli_num_rows($result);
 					    <div class="cardHeader">
 							<h2>Admins</h2>
 							<a href="addadmin.php" class="btn">Add New Admin</a>
-
 						</div>
 
-
-						<!--recent users-->
-
-						<div id="recentUsr">
-							<div class="recentOrders">
-								<div class="cardHeader">
-									<h2>Recent Users</h2>
-								</div>
-
-								<table>
-									<thead>
-										<tr>
-											<td>User ID</td>
-											<td>User Name</td>
-											<td>Email</td>
-										</tr>
-									</thead>
-
-									<tbody>
-										<?php
-										if (mysqli_num_rows($result4) > 0) {
-											while ($row = mysqli_fetch_assoc($result4)) {
-												echo      '<tr>';
-												echo      '<td>' . $row['uid'] . '</td>';
-												echo      '<td>' . $row['name'] . '</td>';
-												echo      '<td>' . $row['email'] . '</td>';
-												echo      '</tr>';
-											}
-										};
-										?>
-									</tbody>
-								</table>
-							</div>
-						</div>
-
-
-						<!--Employees-->
-
-						<div id="mngAdmin">
-							<div class="recentOrders">
-								<div class="cardHeader">
-									<h2>Admins</h2>
-									<a href="addadmin.php" class="btn">Add New Admin</a>
-								</div>
-
-								<table>
-									<thead>
-										<tr>
-											<td>User ID</td>
-											<td>User Name</td>
-											<td>Date</td>
-											<td>Phone</td>
-											<td>Department</td>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										if (mysqli_num_rows($result5) > 0) {
-											while ($row = mysqli_fetch_assoc($result5)) {
-												echo      '<tr>';
-												echo      '<td>' . $row['uid'] . '</td>';
-												echo      '<td>' . $row['name'] . '</td>';
-												echo      '<td>' . $row['email'] . '</td>';
-												echo      '</tr>';
-											}
-										};
-										?>
-									</tbody>
-								</table>
-							</div>
-						</div>
+						<table>
+							<thead>
+								<tr>
+									<td>User ID</td>
+									<td>User Name</td>
+									<td>Date</td>
+									<td>Phone</td>
+									<td>Department</td>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+                                        if(mysqli_num_rows($result5) > 0) {
+                                            while($row = mysqli_fetch_assoc($result5)) { 
+                                                echo      '<tr>';
+                                                echo      '<td>'. $row['uid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
+                                                echo      '<td>'. $row['email']. '</td>';
+                                                echo      '</tr>';
+                                            }
+                                        };
+                                    ?>	
+							</tbody>
+						</table>
 					</div>
-				</div>
+                </div>
+			</div>
+		</div>
 
-				<!-- =========== Scripts =========  -->
-				<script src="main.js"></script>
-
+		<!-- =========== Scripts =========  -->
+		<script src="main.js"></script>
 
 		<!-- ====== ionicons ======= -->
 		<script
@@ -479,4 +423,3 @@ $rowcount = mysqli_num_rows($result);
 		
 	</body>
 </html>
-
