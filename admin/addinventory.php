@@ -30,11 +30,17 @@
             <div class="column">
                 <div class="input-box">
                     <label>Manufacture:</label>
-                    <input id="ing" type="number" name="manufacture" required />
+                    <input id="ing" type="text" name="manufacture" required />
                 </div>
                 <div class="input-box">
-                    <label>Location:</label>
-                    <input id="itm" type="number" name="location" required />
+                    <label>Location:</label><br/><br/>
+                    <select name="location">
+                        <option value="Store 101">Store 101 </option>
+                        <option value="Store 102">Store 102 </option>
+                        <option value="Store 103">Store 103</option>
+                        <option value="Store 104">Store 104 </option>
+       
+        </select><br><br>
                 </div>
             </div>
             
@@ -47,7 +53,7 @@
             <div class="input-box stps">
                 <label>Production Date:</label>
                 <div class="column">
-                    <input type="date" name="dop" required />
+                <input type="date" id="dop" name="dop" required max="<?php echo date('Y-m-d'); ?>">
                     
                 </div>
             </div>

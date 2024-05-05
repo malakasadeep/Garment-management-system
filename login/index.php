@@ -27,6 +27,8 @@
                 <input type="text" placeholder="Name" name="name">
                 <input type="email" placeholder="Email" name="email">
                 <input type="password" placeholder="Password" name="password">
+                <label>Image:</label>
+                <input type="file" id="myFile" name="pic">
                 <button type="submit" name="submit">Sign Up</button>
             </form>
         </div>
