@@ -17,7 +17,7 @@
 
 <?php
 // Include your database connection script (e.g., db_connection.php)
-include 'db_connection.php';
+include '../db_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['product_id'], $_POST['product_name'], $_POST['price'], $_POST['description'], $_POST['quantity'], $_POST['category'])) {

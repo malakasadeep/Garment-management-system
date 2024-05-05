@@ -6,9 +6,9 @@ session_start();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include_once("dbh.inc.php");
+include_once("../db_connection.php");
 
-if (isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $newname = $_POST['name'];
     $newemail = $_POST['email'];
     $newPassword = $_POST['confirmPassword'];
@@ -17,13 +17,11 @@ if (isset($_POST['submit'])){
 
     $result = mysqli_query($conn, $sql);
 
-    if($result){
-		
+    if ($result) {
+
         header('Location: index.php');
-        }
-        
-        else{
-            die(mysqli_error($conn));
-        }
+    } else {
+        die(mysqli_error($conn));
+    }
 }
 ?>
