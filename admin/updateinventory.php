@@ -6,6 +6,7 @@ session_start();
 include_once("dbh.inc.php");
 
 $eid = $_GET['id'];
+$_SESSION['eid'] = $eid;
 
 $sql = "SELECT * FROM inventory WHERE pid = '$eid'";
 
@@ -28,7 +29,7 @@ if(mysqli_num_rows($result) > 0) {
 <body>
     <div class="container">
         
-        <form action="update.inc.php" method="post" enctype="multipart/form-data">
+        <form action="updateinventory.inc.php" method="post" enctype="multipart/form-data">
             <h1>Update Inventory</h1>
 
 
@@ -36,13 +37,19 @@ if(mysqli_num_rows($result) > 0) {
             <input type="text" id="username" name="name" value="<?php echo $row['name'];?>"required>
 
             <label for="email">Category:</label>
-            <input type="text" id="email" name="email" value="<?php echo $row[''];?>" required>
+            <input type="text" id="email" name="cat" value="<?php echo $row['category'];?>" required>
 
-            <label for="password">Location:</label>
-            <input type="text" id="password" name="password" value="<?php echo $row['category'];?>">
+            <label for="password">Manufacture:</label>
+            <input type="text" id="password" name="manufactur" value="<?php echo $row['manufactur'];?>">
 
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="text" id="confirmPassword" name="confirmPassword" value="<?php echo $row['manufactur'];?>" >
+            <label for="confirmPassword">Location:</label>
+            <input type="text" id="confirmPassword" name="location" value="<?php echo $row['location'];?>" >
+
+            <label for="confirmPassword">Maximum Quantity:</label>
+            <input type="text" id="confirmPassword" name="max" value="<?php echo $row['max'];?>" >
+
+            <label for="confirmPassword">Current Quantity:</label>
+            <input type="text" id="confirmPassword" name="qty" value="<?php echo $row['qty'];?>" >
 
             <button type="submit" name="submit">Save Changes</button>
         </form>

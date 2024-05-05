@@ -128,7 +128,7 @@
 			<!-- ========================= Main ==================== -->
 			<div class="main">
 				<div class="topbar">
-					<div class="toggle">
+					<div class="togglee">
 						<ion-icon name="menu-outline"></ion-icon>
 					</div>
 
@@ -208,7 +208,7 @@
                                         <td>Start Date</td>
 										<td>Phone</td>
 										<td>Department</td>
-                                        <td>Status</td>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -221,7 +221,8 @@
                                                 echo      '<td>'. $row['date']. '</td>';
 												echo      '<td>'. $row['phone']. '</td>';
 												echo      '<td>'. $row['department']. '</td>';
-                                                echo      '<td>'. '<span class="status delivered">' .'Active' .'</span>' .'</td>';
+                                                echo      '<td>'. '<a href="updateinventory.php?id='.$row['eid'].'" class="btn" style="background-color: #8de02c; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Update' .'</a>' .'</td>';
+												echo      '<td>'. '<a href="deleteemployee.inc.php?id='.$row['eid'].'" class="btn" style="background-color: #f00; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Delete' .'</a>' .'</td>';
                                                 echo      '</tr>';
                                             }
                                         };
@@ -266,7 +267,8 @@
 												echo      '<td>'. $row['dop']. '</td>';
 												echo      '<td>'. $row['max']. '</td>';
 												echo      '<td>'. $row['qty']. '</td>';
-                                                echo      '<td>'. '<a href="updateinventory.php?id='.$row['pid'].'" class="btn">' .'Update' .'</a>' .'</td>';
+                                                echo      '<td>'. '<a href="updateinventory.php?id='.$row['pid'].'" class="btn" style="background-color: #8de02c; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Update' .'</a>' .'</td>';
+												echo      '<td>'. '<a href="deleteinvetory.inc.php?id='.$row['pid'].'" class="btn" style="background-color: #f00; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Delete' .'</a>' .'</td>';
                                                 echo      '</tr>';
                                             }
                                         };
@@ -362,5 +364,6 @@
 			nomodule
 			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
 		></script>
+		
 	</body>
 </html>
