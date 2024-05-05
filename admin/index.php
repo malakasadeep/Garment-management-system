@@ -5,18 +5,16 @@
 <?php
     include_once("dbh.inc.php");
 
-	$user = $_SESSION['name'];
-
     $sql = array(
             "SELECT * FROM employee", 
 			"SELECT * FROM inventory",
             "SELECT COUNT(eid) FROM employee",
             "SELECT * FROM user WHERE type = 'user'",
             "SELECT * FROM user WHERE type = 'admin'",
-
+			"SELECT * FROM products"
         );
 
-    for ($i = 0; $i < 4; $i++) {
+    for ($i = 0; $i < 6; $i++) {
         if ($i == 0) {
             $result = mysqli_query($conn, $sql[$i]);
         }
@@ -32,11 +30,12 @@
 		if ($i == 4) {
             $result5 = mysqli_query($conn, $sql[$i]);
         }
+		if ($i == 5) {
+            $result6 = mysqli_query($conn, $sql[$i]);
+        }
     }    
 
     $rowcount=mysqli_num_rows($result);
-	$rowcount1=mysqli_num_rows($result2);
-	$rowcount2=mysqli_num_rows($result4);
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +59,7 @@
 							<span class="icon">
 								<img src="imgs/customer01.jpg" alt="" />
 							</span>
-							<span class="tit"><?php echo $user;?></span>
+							<span class="tit">;?></span>
 						</a>
 					</li>
 
@@ -70,6 +69,16 @@
 								<ion-icon name="home-outline"></ion-icon>
 							</span>
 							<span class="title">Dashboard</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="#recentpro">
+							<span class="icon">
+								<ion-icon name="albums-outline"></ion-icon>
+
+							</span>
+							<span class="title">Recent Products</span>
 						</a>
 					</li>
 
@@ -120,7 +129,7 @@
 					</li>
 
 					<li>
-						<a href="logout.php">
+						<a href="#">
 							<span class="icon">
 								<ion-icon name="log-out-outline"></ion-icon>
 							</span>
@@ -138,12 +147,12 @@
 					</div>
 
 					<div class="se">
-							<img src="imgs/l6.png">
+							
 				
 					</div>
 
 					<div class="user">
-						<img src="imgs/customer01.jpg" alt="" />
+						
 					</div>
 				</div>
 
@@ -163,8 +172,8 @@
 					<div class="card">
 						<div>
 							
-							<div class="numbers"><?php echo $rowcount1; ?></div>
-							<div class="cardName">Inventory Items</div>
+							<div class="numbers"></div>
+							<div class="cardName">Registred Users</div>
 						</div>
 
 						<div class="iconBx">
@@ -175,8 +184,8 @@
 					<div class="card">
 						<div>
 							
-							<div class="numbers"><?php echo $rowcount2; ?></div>
-							<div class="cardName">Registerd Users</div>
+							<div class="numbers"></div>
+							<div class="cardName">Recipes</div>
 						</div>
 
 						<div class="iconBx">
@@ -193,6 +202,48 @@
 						<div class="iconBx">
 							<ion-icon name="cash-outline"></ion-icon>
 						</div>
+					</div>
+				</div>
+
+
+				<!-- ================ Product Management ================= -->
+			<div class="details">
+				<div id="recentProducts">
+					<div class="recentOrders">
+						<div class="cardHeader">
+							<h2>Product Management</h2>
+							<a href="./../products/add.php" class="btn">Add New Products</a>
+						</div>
+
+						<table>
+							<thead>
+								<tr>
+									<td>Product ID</td>
+									<td>Product Name</td>
+									<td>Category</td>
+									<td>Quantity</td>
+									<td>Price</td>
+									<td>View</td>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								if (mysqli_num_rows($result6) > 0) {
+									while ($row = mysqli_fetch_assoc($result6)) {
+										echo      '<tr>';
+										echo      '<td>' . $row['product_code'] . '</td>';
+										echo      '<td>' . $row['product_name'] . '</td>';
+										echo      '<td>' . $row['category'] . '</td>';
+										echo      '<td>' . $row['quantity'] . '</td>';
+										echo      '<td>' . $row['price'] . '</td>';
+										echo '<td><a href="./../products/viewone.php?id=' . $row['id'] . '"><span class="status delivered">View</span></a></td>';
+
+										echo      '</tr>';
+									}
+								};
+								?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 
@@ -226,7 +277,7 @@
                                                 echo      '<td>'. $row['date']. '</td>';
 												echo      '<td>'. $row['phone']. '</td>';
 												echo      '<td>'. $row['department']. '</td>';
-                                                echo      '<td>'. '<a href="updateemployee.php?id='.$row['eid'].'" class="btn" style="background-color: #8de02c; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Update' .'</a>' .'</td>';
+                                                echo      '<td>'. '<a href="updateinventory.php?id='.$row['eid'].'" class="btn" style="background-color: #8de02c; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Update' .'</a>' .'</td>';
 												echo      '<td>'. '<a href="deleteemployee.inc.php?id='.$row['eid'].'" class="btn" style="background-color: #f00; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Delete' .'</a>' .'</td>';
                                                 echo      '</tr>';
                                             }
@@ -309,7 +360,6 @@
                                                 echo      '<td>'. $row['uid']. '</td>';
                                                 echo      '<td>'. $row['name']. '</td>';
                                                 echo      '<td>'. $row['email']. '</td>';
-												echo      '<td>'. '<a href="deleteuser.inc.php?id='.$row['uid'].'" class="btn" style="background-color: #f00; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Delete' .'</a>' .'</td>';
                                                 echo      '</tr>';
                                             }
                                         };
@@ -320,7 +370,41 @@
                     </div>
 				
 
-				
+				<!--Employees-->
+			
+				<div id="mngAdmin">
+					<div class="recentOrders">
+					    <div class="cardHeader">
+							<h2>Admins</h2>
+							<a href="addadmin.php" class="btn">Add New Admin</a>
+						</div>
+
+						<table>
+							<thead>
+								<tr>
+									<td>User ID</td>
+									<td>User Name</td>
+									<td>Date</td>
+									<td>Phone</td>
+									<td>Department</td>
+								</tr>
+							</thead>
+							<tbody>
+							<?php
+                                        if(mysqli_num_rows($result5) > 0) {
+                                            while($row = mysqli_fetch_assoc($result5)) { 
+                                                echo      '<tr>';
+                                                echo      '<td>'. $row['uid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
+                                                echo      '<td>'. $row['email']. '</td>';
+                                                echo      '</tr>';
+                                            }
+                                        };
+                                    ?>	
+							</tbody>
+						</table>
+					</div>
+                </div>
 			</div>
 		</div>
 
