@@ -11,7 +11,7 @@ function activeLink() {
 list.forEach((item) => item.addEventListener("mouseover", activeLink));
 
 // Menu Togglefreer
-let toggle = document.querySelector(".toggle");
+let toggle = document.querySelector(".togglee");
 let navigation = document.querySelector(".navigation");
 let main = document.querySelector(".main");
 

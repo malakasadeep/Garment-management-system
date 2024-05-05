@@ -23,7 +23,22 @@ if (isset($_POST['submit'])) {
             
                 if($result){
                     
-                    header('Location: index.php');
+                    // Use SweetAlert for success message
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>';
+        echo '<script>';
+        echo 'document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: "Success!",
+                text: "New Inventory Details Added Successfully!",
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "index.php";
+                }
+            });
+        });';
+        echo '</script>';
                     }
                     else{
                         die(mysqli_error($conn));

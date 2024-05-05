@@ -157,12 +157,19 @@ $rowcount = mysqli_num_rows($result);
 				</div>
 			</div>
 
+
 			<!-- ======================= Cards ================== -->
 			<div class="cardBox">
 				<div class="card">
 					<div>
 						<div class="numbers"><?php echo $rowcount; ?></div>
 						<div class="cardName">Total Employees</div>
+
+			<!-- ========================= Main ==================== -->
+			<div class="main">
+				<div class="topbar">
+					<div class="togglee">
+						<ion-icon name="menu-outline"></ion-icon>
 					</div>
 
 					<div class="iconBx">
@@ -264,28 +271,30 @@ $rowcount = mysqli_num_rows($result);
 										<td>Start Date</td>
 										<td>Phone</td>
 										<td>Department</td>
-										<td>Status</td>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									if (mysqli_num_rows($result) > 0) {
-										while ($row = mysqli_fetch_assoc($result)) {
-											echo      '<tr>';
-											echo      '<td>' . $row['eid'] . '</td>';
-											echo      '<td>' . $row['name'] . '</td>';
-											echo      '<td>' . $row['date'] . '</td>';
-											echo      '<td>' . $row['phone'] . '</td>';
-											echo      '<td>' . $row['department'] . '</td>';
-											echo      '<td>' . '<span class="status delivered">' . 'Active' . '</span>' . '</td>';
-											echo      '</tr>';
-										}
-									};
-									?>
-								</tbody>
-							</table>
-						</div>
-					</div>
+
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        if(mysqli_num_rows($result) > 0) {
+                                            while($row = mysqli_fetch_assoc($result)) { 
+                                                echo      '<tr>';
+                                                echo      '<td>'. $row['eid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
+                                                echo      '<td>'. $row['date']. '</td>';
+												echo      '<td>'. $row['phone']. '</td>';
+												echo      '<td>'. $row['department']. '</td>';
+                                                echo      '<td>'. '<a href="updateinventory.php?id='.$row['eid'].'" class="btn" style="background-color: #8de02c; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Update' .'</a>' .'</td>';
+												echo      '<td>'. '<a href="deleteemployee.inc.php?id='.$row['eid'].'" class="btn" style="background-color: #f00; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Delete' .'</a>' .'</td>';
+                                                echo      '</tr>';
+                                            }
+                                        };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
 					<!-- ================ Inventory Levels ================= -->
 					<div class="details">
@@ -296,40 +305,88 @@ $rowcount = mysqli_num_rows($result);
 									<a href="addinventory.php" class="btn">Add New Inventory</a>
 								</div>
 
-								<table>
-									<thead>
-										<tr>
-											<td>Item ID</td>
-											<td>Item Name</td>
-											<td>Category</td>
-											<td>Manufacture</td>
-											<td>Location</td>
-											<td>Manufa. Date</td>
-											<td>Max. Qty</td>
-											<td>Curr. Qty</td>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										if (mysqli_num_rows($result2) > 0) {
-											while ($row = mysqli_fetch_assoc($result2)) {
-												echo      '<tr>';
-												echo      '<td>' . $row['pid'] . '</td>';
-												echo      '<td>' . $row['name'] . '</td>';
-												echo      '<td>' . $row['category'] . '</td>';
-												echo      '<td>' . $row['manufactur'] . '</td>';
-												echo      '<td>' . $row['location'] . '</td>';
-												echo      '<td>' . $row['dop'] . '</td>';
-												echo      '<td>' . $row['max'] . '</td>';
-												echo      '<td>' . $row['qty'] . '</td>';
-												echo      '<td>' . '<a href="updateinventory.php?id=' . $row['pid'] . '" class="btn">' . 'Update' . '</a>' . '</td>';
-												echo      '</tr>';
-											}
-										};
-										?>
-									</tbody>
-								</table>
-							</div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Item ID</td>
+                                        <td>Item Name</td>
+                                        <td>Category</td>
+										<td>Manufacture</td>
+										<td>Location</td>
+                                        <td>Manufa. Date</td>
+										<td>Max. Qty</td>
+										<td>Curr. Qty</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        if(mysqli_num_rows($result2) > 0) {
+                                            while($row = mysqli_fetch_assoc($result2)) { 
+                                                echo      '<tr>';
+                                                echo      '<td>'. $row['pid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
+                                                echo      '<td>'. $row['category']. '</td>';
+												echo      '<td>'. $row['manufactur']. '</td>';
+												echo      '<td>'. $row['location']. '</td>';
+												echo      '<td>'. $row['dop']. '</td>';
+												echo      '<td>'. $row['max']. '</td>';
+												echo      '<td>'. $row['qty']. '</td>';
+                                                echo      '<td>'. '<a href="updateinventory.php?id='.$row['pid'].'" class="btn" style="background-color: #8de02c; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Update' .'</a>' .'</td>';
+												echo      '<td>'. '<a href="deleteinvetory.inc.php?id='.$row['pid'].'" class="btn" style="background-color: #f00; text-decoration: none; padding: 5px; border-radius: 5px;"">' .'Delete' .'</a>' .'</td>';
+                                                echo      '</tr>';
+                                            }
+                                        };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+				
+
+                <!--recent users-->
+				
+					<div id="recentUsr">
+                        <div class="recentOrders">
+                            <div class="cardHeader">
+                                <h2>Recent Users</h2>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>User ID</td>
+                                        <td>User Name</td>
+                                        <td>Email</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+                                        if(mysqli_num_rows($result4) > 0) {
+                                            while($row = mysqli_fetch_assoc($result4)) { 
+                                                echo      '<tr>';
+                                                echo      '<td>'. $row['uid']. '</td>';
+                                                echo      '<td>'. $row['name']. '</td>';
+                                                echo      '<td>'. $row['email']. '</td>';
+                                                echo      '</tr>';
+                                            }
+                                        };
+                                    ?>	
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+				
+
+				<!--Employees-->
+			
+				<div id="mngAdmin">
+					<div class="recentOrders">
+					    <div class="cardHeader">
+							<h2>Admins</h2>
+							<a href="addadmin.php" class="btn">Add New Admin</a>
+
 						</div>
 
 
@@ -409,9 +466,17 @@ $rowcount = mysqli_num_rows($result);
 				<!-- =========== Scripts =========  -->
 				<script src="main.js"></script>
 
-				<!-- ====== ionicons ======= -->
-				<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-				<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
 
+		<!-- ====== ionicons ======= -->
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+		></script>
+		
+	</body>
 </html>
+
