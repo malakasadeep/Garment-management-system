@@ -1,17 +1,17 @@
 <?php
 // Include your database connection script (e.g., dbh.php)
-include 'db_connection.php';
+include '../db_connection.php';
 
 // Check if the ID parameter is set in the URL
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     // Sanitize the ID parameter to prevent SQL injection
     $id = mysqli_real_escape_string($conn, $_GET['id']);
-    
+
     // Fetch data from the database based on the ID
     $query = "SELECT * FROM products WHERE id = '$id'";
     $result = mysqli_query($conn, $query);
 
-    if(mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $product_code = $row['product_code'];
         $product_name = $row['product_name'];
@@ -33,6 +33,7 @@ if(isset($_GET['id'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,83 +118,85 @@ if(isset($_GET['id'])) {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
         }
+
         body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
-}
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
 
-.left-side,
-.right-side {
-    flex-basis: calc(50% - 10px);
-}
+        .left-side,
+        .right-side {
+            flex-basis: calc(50% - 10px);
+        }
 
-.square-container {
-    width: 200px;
-    height: 200px;
-    background-color: #fff;
-    border: 2px solid #00aa00;
-    border-radius: 8px;
-    padding: 20px;
-}
+        .square-container {
+            width: 200px;
+            height: 200px;
+            background-color: #fff;
+            border: 2px solid #00aa00;
+            border-radius: 8px;
+            padding: 20px;
+        }
 
-.square-container h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
+        .square-container h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-.square-container p {
-    margin-bottom: 5px;
-}
+        .square-container p {
+            margin-bottom: 5px;
+        }
 
-.square-container p span {
-    font-weight: bold;
-}
+        .square-container p span {
+            font-weight: bold;
+        }
 
-.update-btn,
-.delete-btn {
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        .update-btn,
+        .delete-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-.update-btn:hover,
-.delete-btn:hover {
-    background-color: #0056b3;
-}
-
+        .update-btn:hover,
+        .delete-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="left-side">
-        <div class="image-container">
+            <div class="image-container">
                 <img src="<?php echo $image; ?>" alt="Product Image">
             </div>
         </div>
         <div class="right-side">
-        <div class="product-details">
+            <div class="product-details">
                 <h2><?php echo $product_name; ?></h2>
                 <p><strong>Product Code:</strong> <?php echo $product_code; ?></p>
                 <p><strong>Price:</strong> $<?php echo $price; ?></p>
@@ -208,4 +211,5 @@ if(isset($_GET['id'])) {
         </div>
     </div>
 </body>
+
 </html>

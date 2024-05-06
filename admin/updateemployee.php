@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <?php
-include_once("dbh.inc.php");
+include_once("../db_connection.php");
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -33,7 +33,7 @@ if(mysqli_num_rows($result) > 0) {
     <div class="container">
         
         <form action="updateemployee.inc.php" method="post" enctype="multipart/form-data">
-            <h1>Update Inventory</h1>
+            <h1>Update Employee</h1>
 
 
             <label for="username">Employee Name:</label>

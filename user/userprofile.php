@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <?php
-include_once("dbh.inc.php");
+include_once("../db_connection.php");
 
 // Fetch user details from the database based on the session
 $sql = "SELECT * FROM user WHERE uid = {$_SESSION['uid']}";
@@ -27,17 +27,16 @@ $user = mysqli_fetch_assoc($result);
         <nav class="hidden">
             <ul>
                 <li><a href="#" class="logo">
-                    <img src="/logo.jpg" alt="">
                     <span class="nav-item"><?php echo $user['name'];?></span>
                 </a></li>
-                <li><a href="" class="nav-link">
+                <li><a href="index.php" class="nav-link">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Home</span>
                 </a></li>
-                <li><a href="" class="nav-link">
+                <li><a href="#"  class="nav-link active">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profile</span>
-                <li><a href="" class="nav-link active">
+                <li><a href="update.php" class="nav-link">
                     <i class="fas fa-cog"></i>
                     <span class="nav-item">Settings</span>
                 </a></li>
@@ -55,13 +54,17 @@ $user = mysqli_fetch_assoc($result);
         
 
         <div class="profile-details">
-        <h1>User Profile</h1>
-            <div class="user-details">
-                <p><strong>Username:</strong> <?php echo $user['name']; ?></p>
-                <p><strong>Email:</strong> <?php echo $user['email']; ?></p>
-                <p><strong>Password:</strong> <?php echo $user['password']; ?></p>
-            </div>
+        
+        <div class="profile-details">
+        
+        <div class="user-details" style="padding: 90px; ">
+        <h1>User Profile</h1><br/><br/>
+            <p><strong>Username:</strong> <br/> <?php echo $user['name']; ?></p>
+            <p><strong>Email:</strong> <br/> <?php echo $user['email']; ?></p>
+            <p><strong>Password:</strong> <br/> <?php echo $user['password']; ?></p>
         </div>
+    </div>
+
     </div>
 </body>
 </html>

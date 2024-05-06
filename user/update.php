@@ -3,7 +3,11 @@ session_start();
 ?>
 
 <?php
-include_once("dbh.inc.php");
+include_once("../db_connection.php");
+$sql = "SELECT * FROM user WHERE uid = {$_SESSION['uid']}";
+
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
 
 ?>
 <!DOCTYPE html>
@@ -19,15 +23,14 @@ include_once("dbh.inc.php");
     <div class="container">
         <nav class="hidden">
             <ul>
-              <li><a href="#" class="logo">
-                <img src="/logo.jpg" alt="">
-                <span class="nav-item"><?php echo $_SESSION['name'];?></span>
-              </a></li>
-              <li><a href="" class="nav-link">
+            <li><a href="#" class="logo">
+                <span class="nav-item"><?php echo $user['name'];?></span>
+              </a></li>
+              <li><a href="index.php" class="nav-link">
                 <i class="fas fa-home"></i>
                 <span class="nav-item">Home</span>
               </a></li>
-              <li><a href="" class="nav-link">
+              <li><a href="userprofile.php" class="nav-link">
                 <i class="fas fa-user"></i>
                 <span class="nav-item">Profile</span>
               <li><a href="" class="nav-link active">
@@ -46,23 +49,21 @@ include_once("dbh.inc.php");
           </nav>
          
 
-        <form action="update.inc.php" method="post" enctype="multipart/form-data">
+          <form action="update.inc.php" method="post" enctype="multipart/form-data">
             <h1>Edit Profile</h1>
 
-            <label for="profilePhoto">Profile Photo:</label>
-            <input type="file" id="profilePhoto" name="pic">
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="name" value="<?php echo $_SESSION['name'];?>"required>
+            <input type="text" id="username" name="name" value="<?php echo $user['name'];?>"required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<?php echo $_SESSION['email'];?>" required>
+            <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" required>
 
             <label for="password">New Password:</label>
-            <input type="password" id="password" name="password" value="<?php echo $_SESSION['password'];?>">
+            <input type="password" id="password" name="password" value="<?php echo $user['password']; ?>">
 
             <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" value="<?php echo $_SESSION['password'];?>" >
+            <input type="password" id="confirmPassword" name="confirmPassword" value="<?php echo $user['password']; ?>" >
 
             <button type="submit" name="submit">Save Changes</button>
         </form>

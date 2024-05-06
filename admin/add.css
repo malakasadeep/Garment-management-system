@@ -89,7 +89,7 @@ body {
 .address :where(input, .select-box) {
   margin-top: 15px;
 }
-.select-box select {
+select {
   height: 100%;
   width: 100%;
   outline: none;
