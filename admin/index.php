@@ -3,7 +3,7 @@
 ?>
 
 <?php
-    include_once("dbh.inc.php");
+    include_once("../db_connection.php");
 
     $sql = array(
             "SELECT * FROM employee", 

@@ -164,7 +164,7 @@ $conn->close();
 
             <div class="form-group">
                 <label for="product_code">Product Code:</label>
-                <input type="text" id="product_code" name="product_code" value="<?php echo $product_code; ?>" required>
+                <input type="text" id="product_code" name="product_code" value="<?php echo $product_code; ?>" required readonly>
             </div>
 
             <div class="form-group">

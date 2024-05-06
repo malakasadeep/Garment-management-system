@@ -39,7 +39,7 @@ mysqli_close($conn);
 
         .container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 20px auto;
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
@@ -47,7 +47,7 @@ mysqli_close($conn);
         }
 
         .card {
-            background-color: #fff;
+            background-color: rgba(128, 0, 128, 0.2);
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             margin: 20px;
@@ -109,10 +109,17 @@ mysqli_close($conn);
                 width: calc(100% - 40px);
             }
         }
+
+        h1{
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+    <h1>Product List</h1>
     <div class="container">
+
         <?php foreach ($products as $product): ?>
             <div class="card">
                 <img src="../products/<?php echo $product['image']; ?>" alt="<?php echo $product['product_name']; ?>"/>

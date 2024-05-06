@@ -17,7 +17,7 @@ $result = mysqli_query($conn, $sql);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoockBooker</title>
+  <title>Garment</title>
   <!-- ======= Styles ====== -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -29,14 +29,14 @@ $result = mysqli_query($conn, $sql);
     <nav class="hidden">
       <ul>
         <li><a href="#" class="logo">
-            <img src="/logo.jpg" alt="">
+            
             <span class="nav-item"><?php echo $user; ?></span>
           </a></li>
-        <li><a href="/Garment-management-system" class="nav-link">
+        <li><a href="index.php" class="nav-link active">
             <i class="fas fa-home"></i>
             <span class="nav-item">Home</span>
           </a></li>
-        <li><a href="Garment-management-system/user/index.php" class="nav-link active">
+        <li><a href="userprofile.php" >
             <i class="fas fa-user"></i>
             <span class="nav-item">Profile</span>
         <li><a href="update.php" class="nav-link">

@@ -1,6 +1,6 @@
 <?php
 
-    include_once("dbh.inc.php");
+include_once("../db_connection.php");
 
     function validateUser($conn, $email) {
         $isExist = false;

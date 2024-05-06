@@ -63,11 +63,11 @@ mysqli_close($conn);
         }
 
         form {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
+    background-color: rgba(128, 0, 128, 0.2); /* Purple color with 50% opacity */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
 
         label {
             display: block;
