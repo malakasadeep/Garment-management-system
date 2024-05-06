@@ -29,7 +29,7 @@ $result = mysqli_query($conn, $sql);
     <nav class="hidden">
       <ul>
         <li><a href="#" class="logo">
-          <img src="/logo.jpg" alt="">
+          <img src="images/guli.png" alt="">
           <span class="nav-item"><?php echo $user;?></span>
         </a></li>
         <li><a href="/Garment-management-system/user/userprofile.php" class="nav-link">

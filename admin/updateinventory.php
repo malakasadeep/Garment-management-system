@@ -5,6 +5,7 @@ session_start();
 <?php
 include_once("dbh.inc.php");
 
+
 $eid = $_GET['id'];
 $_SESSION['eid'] = $eid;
 
