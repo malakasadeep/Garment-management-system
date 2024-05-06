@@ -14,9 +14,12 @@
         <input type="text" placeholder="Enter Employee name" name="name" required>
       </div>
       <div class="input-box">
-        <input type="text" placeholder="Enter Employee Phone" name="phone" required>
+      <input type="text" id="phone" name="phone" placeholder="Enter Employee Phone" required pattern="[0-9]{10}" title="Please enter 10 digits" maxlength="10">
       </div>
-      <div class="">
+      <div class="input-box">
+      <input type="date" id="date" name="date" required min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d'); ?>"> 
+      </div>
+      <div class="input-box inp-select">
         <select name="department">
           <option value="Marketing">Marketing and business development department </option>
           <option value="Design">Design department </option>

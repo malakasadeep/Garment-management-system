@@ -4,6 +4,7 @@ session_start();
 
 <?php
 include_once("dbh.inc.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +23,11 @@ include_once("dbh.inc.php");
                 <img src="/logo.jpg" alt="">
                 <span class="nav-item"><?php echo $_SESSION['name'];?></span>
               </a></li>
-              <li><a href="/Online_Recipe_Management_System" class="nav-link">
+              <li><a href="" class="nav-link">
                 <i class="fas fa-home"></i>
                 <span class="nav-item">Home</span>
               </a></li>
-              <li><a href="/Online_Recipe_Management_System/user" class="nav-link">
+              <li><a href="" class="nav-link">
                 <i class="fas fa-user"></i>
                 <span class="nav-item">Profile</span>
               <li><a href="" class="nav-link active">
@@ -43,11 +44,13 @@ include_once("dbh.inc.php");
               </a></li>
             </ul>
           </nav>
+         
+
         <form action="update.inc.php" method="post" enctype="multipart/form-data">
             <h1>Edit Profile</h1>
 
             <label for="profilePhoto">Profile Photo:</label>
-            <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*">
+            <input type="file" id="profilePhoto" name="pic">
 
             <label for="username">Username:</label>
             <input type="text" id="username" name="name" value="<?php echo $_SESSION['name'];?>"required>
@@ -63,6 +66,7 @@ include_once("dbh.inc.php");
 
             <button type="submit" name="submit">Save Changes</button>
         </form>
+        <a href="deleteuser.inc.php" style="background-color: red; width: 80px; height: 60px; color: black; border-radius: 10px;">Delete Profile</a>
     </div>
 </body>
 </html>

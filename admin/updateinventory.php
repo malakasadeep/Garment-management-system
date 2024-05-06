@@ -5,6 +5,7 @@ session_start();
 <?php
 include_once("dbh.inc.php");
 
+
 $eid = $_GET['id'];
 $_SESSION['eid'] = $eid;
 
@@ -43,7 +44,13 @@ if(mysqli_num_rows($result) > 0) {
             <input type="text" id="password" name="manufactur" value="<?php echo $row['manufactur'];?>">
 
             <label for="confirmPassword">Location:</label>
-            <input type="text" id="confirmPassword" name="location" value="<?php echo $row['location'];?>" >
+            <select name="location" value="<?php echo $row['location'];?>">
+                        <option value="Store 101">Store 101 </option>
+                        <option value="Store 102">Store 102 </option>
+                        <option value="Store 103">Store 103</option>
+                        <option value="Store 104">Store 104 </option>
+       
+            </select><br><br>
 
             <label for="confirmPassword">Maximum Quantity:</label>
             <input type="text" id="confirmPassword" name="max" value="<?php echo $row['max'];?>" >
