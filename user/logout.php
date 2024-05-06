@@ -6,3 +6,4 @@ session_destroy();
 header("Location: /Garment-management-system");
 
 ?>
+

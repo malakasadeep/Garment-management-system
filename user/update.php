@@ -3,8 +3,7 @@ session_start();
 ?>
 
 <?php
-
-include_once("../db_connection.php");
+include_once("dbh.inc.php");
 
 ?>
 <!DOCTYPE html>
